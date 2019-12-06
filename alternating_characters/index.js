@@ -13,7 +13,7 @@ function alternatingCharacters(s) {
 
     while (idx < arr.length) {
         if (rightChar !== currentChar) {
-            console.log("we're good!")
+            // console.log("we're good!")
             currentChar = rightChar
             idx += 1
             rightChar = arr[idx]
