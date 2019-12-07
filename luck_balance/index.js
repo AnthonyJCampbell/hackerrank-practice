@@ -40,9 +40,29 @@ function luckBalance(k, contests) {
     //  It should return an integer that represents the maximum luck balance achievable.
     return balance
 }
+
 console.log(luckBalance(3, [[5, 1],
     [2, 1],
     [1, 1],
     [8, 1],
     [10, 0],
     [5, 0]]))
+
+function altLuckBalance(k, contests) {
+    const importantContest = contests.filter(item => item[1] === 1)
+    const importantContestByLuckAsc = importantContest.sort((a, b) => a[0] - b[0])
+    const unimportantContest = contests.filter(item => item[1] === 0)
+
+    const importantContestByLuckAscToWin = importantContestByLuckAsc
+        .splice(0, importantContest.length - k)
+ 
+    const importantContestByLuckAscToLoose = importantContestByLuckAsc;
+    
+    const sumLuck = (sum, item) => sum + item[0];
+    
+    const sumImportantLuckToLoose = importantContestByLuckAscToWin.reduce(sumLuck, 0)
+    const sumImportantLuckToGain = importantContestByLuckAscToLoose.reduce(sumLuck, 0)
+    const sumUnimportantLuckToGain = unimportantContest.reduce(sumLuck, 0)
+
+    return (sumImportantLuckToGain + sumUnimportantLuckToGain) - sumImportantLuckToLoose    
+}
