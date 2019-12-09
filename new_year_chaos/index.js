@@ -7,35 +7,38 @@
 // Return the minimum number of bribes needed to create a given queue of people
 
 function minimumBribes(q) {
-    // Loop over q
-    for (let i = 0; i < q.length; i++) {
-        console.log(q[i])
+    let min_bribes = 0
 
-        console.log(i)
+    for (let i = 0; i < q.length; i++) {
         if (q[i] - [i+1] > 2) {
-            // return "Too chaotic"
-            console.log("Too chaotic")
+            return "Too chaotic"
+            // console.log("Too chaotic")
         }
 
-        // Find the difference between the value at i and where it's supposed to be
-            // if diff == 1
-                // add one to min_bribes
-            // if diff == 2
-                // add two to mind_bribes
+        // If lower value succeeds a higher value, dont do anything
+        
+        if (q[i] > i+1) {
+            min_bribes += q[i] - (i+1)
+        }
+        
+        // console.log(min_bribes)
+
+       
+
     }
         // If the value of an item in q - i > 2
             // return "Too chaotic"
-    console.log("done")
+    return min_bribes
         
 
 }
-console.log(minimumBribes([2, 1, 5, 3, 4]))
+// console.log(minimumBribes([2, 1, 5, 3, 4]))
 // 3
 // console.log(minimumBribes([2, 5, 1, 3, 4]))
 // Too chaotic
 // console.log(minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]))
 // Too chaotic
-// console.log(minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]))
+console.log(minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]))
 // 7
-// console.log(minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]))
-// // 4
+console.log(minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]))
+// 4
