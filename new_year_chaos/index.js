@@ -17,19 +17,28 @@ function minimumBribes(q) {
             // console.log("Too chaotic")
         }
 
-        // Iterate over holder. See if there's values that are smaller 
-        for (let rightVal = 0; rightVal < holder.length; rightVal++) {
-            // console.log(rightVal)
-            // console.log(holder)
-            if (holder[rightVal] < q[i]) {
-                // console.log(holder[rightVal])
-                // console.log("is larger than")
-                // console.log(q[i])
-                min_bribes += 1
+        // Start at (val of q[i]) - 2 and go until you've reached the current location
+        for (let j = q[i] - 2; j < i; j++) {
+            // console.log(j)
+            if (q[j] > q[i]) {
+                // console.log(q[j], "is larger than ", q[i])
+                min_bribes++
             }
         }
 
-        holder.unshift(q[i])
+        // // Iterate over holder. See if there's values that are smaller 
+        // for (let rightVal = 0; rightVal < holder.length; rightVal++) {
+        //     // console.log(rightVal)
+        //     // console.log(holder)
+        //     if (holder[rightVal] < q[i]) {
+        //         // console.log(holder[rightVal])
+        //         // console.log("is larger than")
+        //         // console.log(q[i])
+        //         min_bribes += 1
+        //     }
+        // }
+
+        // holder.unshift(q[i])
     }
 
         // let largerThanCounter = 0
@@ -55,13 +64,13 @@ function minimumBribes(q) {
     return min_bribes
 }
 
-console.log(minimumBribes([2, 1, 5, 3, 4]))
+// console.log(minimumBribes([2, 1, 5, 3, 4]))
 // 3
-console.log(minimumBribes([2, 5, 1, 3, 4]))
+// console.log(minimumBribes([2, 5, 1, 3, 4]))
 // Too chaotic
-console.log(minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]))
+// console.log(minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]))
 // Too chaotic
 console.log(minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]))
 // 7
-console.log(minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]))
+// console.log(minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]))
 // 4
