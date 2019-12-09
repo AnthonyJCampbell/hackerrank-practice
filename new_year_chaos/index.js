@@ -8,35 +8,58 @@
 
 function minimumBribes(q) {
     let min_bribes = 0
+    let holder = []
 
-    for (let i = 0; i < q.length; i++) {
+    // Iterate over the loop in reverse order
+    for (let i = q.length - 1; i >= 0; i--) {
         if (q[i] - [i+1] > 2) {
-            return "Too chaotic"
+                    return "Too chaotic"
             // console.log("Too chaotic")
         }
 
-        // If lower value succeeds a higher value, dont do anything
-        
-        if (q[i] > i+1) {
-            min_bribes += q[i] - (i+1)
+        // Iterate over holder. See if there's values that are smaller 
+        for (let rightVal = 0; rightVal < holder.length; rightVal++) {
+            // console.log(rightVal)
+            // console.log(holder)
+            if (holder[rightVal] < q[i]) {
+                // console.log(holder[rightVal])
+                // console.log("is larger than")
+                // console.log(q[i])
+                min_bribes += 1
+            }
         }
-        
-        // console.log(min_bribes)
 
-       
-
+        holder.unshift(q[i])
     }
-        // If the value of an item in q - i > 2
-            // return "Too chaotic"
-    return min_bribes
-        
 
+        // let largerThanCounter = 0
+        // iterate over val in holder
+            // if evaulated value to the right > q[i]
+                // largerThanCounter += 1
+
+        // Store val in holder unshift()
+
+
+    // for (let i = 0; i < q.length; i++) {
+    //     if (q[i] - [i+1] > 2) {
+    //         return "Too chaotic"
+    //         // console.log("Too chaotic")
+    //     }
+
+    //     // If lower value succeeds a higher value, dont do anything
+    //     if (q[i] > i+1) {
+    //         min_bribes += q[i] - (i+1)
+    //     }
+    // }
+
+    return min_bribes
 }
-// console.log(minimumBribes([2, 1, 5, 3, 4]))
+
+console.log(minimumBribes([2, 1, 5, 3, 4]))
 // 3
-// console.log(minimumBribes([2, 5, 1, 3, 4]))
+console.log(minimumBribes([2, 5, 1, 3, 4]))
 // Too chaotic
-// console.log(minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]))
+console.log(minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]))
 // Too chaotic
 console.log(minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]))
 // 7
