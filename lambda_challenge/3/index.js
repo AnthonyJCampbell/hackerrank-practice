@@ -1,7 +1,5 @@
 function removeKthLinkedListNode(head, k) {
     const list = [head]
-
-    const head_val = head["data"]
     let current_node = head
     
     // Add all nodes to list
@@ -14,7 +12,6 @@ function removeKthLinkedListNode(head, k) {
     // If k > the number of nodes, nothing needs to be removed
     if (k <= list.length) {
         const index_of_target = list.length -k
-        const target = list[index_of_target]
         // console.log("raget to be removed is ", target["data"])
         const left_node = list[index_of_target - 1]
         // If left_node is undefined, that means the target is the first item of the LL, so we should simply remove the head of the LL and leave it at that

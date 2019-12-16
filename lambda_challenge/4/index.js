@@ -32,7 +32,6 @@ function threeNumberSum(arr, target) {
     }
 
     // Sort based on first item in sub-array
-    let sorted_arr = []
     return_arr.sort((index => {
         return (first_arr, second_arr) => {
             return (first_arr[index] == second_arr[index] ? 

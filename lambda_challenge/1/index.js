@@ -19,3 +19,5 @@ function fibonacci(n) {
     }
     return return_arr
 }
+
+console.log(fibonacci(13))
