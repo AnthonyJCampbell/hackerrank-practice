@@ -13,18 +13,46 @@ function isValid(s) {
         // Store s[letter] in hash table
         // if s[letter] is in hash table, increment value by one
         // If not, set it to 1
+        hash[s[letter]] == undefined ? hash[s[letter]] = 1 : hash[s[letter]] += 1
     }
 
+    // console.log(hash)
+
     // After storing everything in the ht, we'll need to check the value to see if they're all the same (or within 1)
+    let values = Object.values(hash).sort()
+    let n_differences = 0
+    let prev = 0
 
-    // Check if all values are the same or if they're all the same except for one
-    // let same_frequency = []
-    // let within_one = []
+    // Can we store it in a hash table?
 
-    // Loop over ht
+    // console.log(values)
+
+    for (let i in values) {
+        
 
 
-    return true
+
+        let value = values[i]
+        if (i == 0) {
+            prev = value
+            continue
+        }
+
+        // console.log(`${value} - ${prev} = ${value - prev}`)
+
+        if (prev !== value && value - prev == 1) {
+            n_differences += 1
+        }
+        // console.log(n_differences)
+        if (value - prev > 1 || n_differences > 1) {
+            return "NO"
+        }
+        prev = value
+    }
+    
+    return "YES"
+
+
 }
 
 console.log(isValid("aabbcd"))
