@@ -5,6 +5,7 @@
 
 // The easiest way to store the data would be in a hash table
 
+// Complete the isValid function below.
 function isValid(s) {
     // Loop over string, store each value in the hash table
     const hash = {}
@@ -15,44 +16,60 @@ function isValid(s) {
         // If not, set it to 1
         hash[s[letter]] == undefined ? hash[s[letter]] = 1 : hash[s[letter]] += 1
     }
-
-    // console.log(hash)
-
     // After storing everything in the ht, we'll need to check the value to see if they're all the same (or within 1)
     let values = Object.values(hash).sort()
-    let n_differences = 0
-    let prev = 0
 
-    // Can we store it in a hash table?
-
-    // console.log(values)
+    const store = {}
 
     for (let i in values) {
-        
-
-
-
         let value = values[i]
-        if (i == 0) {
-            prev = value
-            continue
-        }
-
-        // console.log(`${value} - ${prev} = ${value - prev}`)
-
-        if (prev !== value && value - prev == 1) {
-            n_differences += 1
-        }
-        // console.log(n_differences)
-        if (value - prev > 1 || n_differences > 1) {
-            return "NO"
-        }
-        prev = value
+        store[value] ? store[value] += 1 : store[value] = 1
     }
-    
-    return "YES"
 
+    let store_vals = Object.values(store).sort((a, b) => a - b)
 
+    // String is not balanced if it has:
+    // More strings that occur in three different amounts
+    // If strings occur in two different amounts but the frequency is off by more than one.
+    // The difference between [0] & [1] should be 0 or 1.
+    if (store_vals.length > 2 || store_vals[0] > 1) {
+        return "NO"
+    } else if (store_vals[0] == 1 || store_vals[1] == undefined) {
+        return "YES"
+    } else {
+        return "NO"
+    }
 }
 
-console.log(isValid("aabbcd"))
+// Solution from HackerRank
+function alt_isValid(s) {
+    var hashTable = {};
+
+    s.trim().split('').map(a => (a in hashTable ? hashTable[a]++ : hashTable[a] = 1));
+
+    var letters = Object.keys(hashTable).map(key => hashTable[key]).sort((a, b) => a - b);
+
+    var firstValue = letters[0];
+    var secondValue = letters[1];
+    var secondToLastValue = letters[letters.length - 2];
+    var lastValue = letters[letters.length - 1];
+
+    if (letters.length === 1 ||
+        firstValue === lastValue ||
+        (secondValue === lastValue &&
+            (firstValue === (lastValue - 1) ||
+                firstValue === 1)) ||
+        (firstValue === (lastValue - 1) &&
+            firstValue === secondToLastValue)) {
+
+        return 'YES';
+
+    } else {
+
+        return 'NO';
+    }
+}
+
+
+
+console.log(isValid("abcdefghhgfedecba"))
