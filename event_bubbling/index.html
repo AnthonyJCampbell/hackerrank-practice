@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="el1">
+        <div id="el2">
+            <div id="el3">
+                <p>3</p>
+            </div>
+            <p>2</p>
+        </div>
+    </div>
+
+    <button id="myBtn">Try it</button>
+
+    <p id="demo"></p>
+
+
+    <script>
+        // document.getElementById("Element1").addEventListener('click', sayHi)
+        // // let el2 = document.getElementById("Element2")
+        // // let el3 = document.getElementById("Element3")
+
+        // // console.log(el1)
+        // const sayHi = () => console.log("hi")
+        
+        // // 
+
+
+        document.getElementById("el1").addEventListener("click", displayDate);
+        document.getElementById("el2").addEventListener("click", sayHi);
+        document.getElementById("el3").addEventListener("click", say3);
+
+        function sayHi(e) {
+
+            console.log("This is the middle div!")
+            e.stopPropagation()
+        }
+
+        function say3(e) {
+            console.log("This is the uppermost div!")
+            
+        }
+
+        function displayDate() {
+            console.log("This is the lowest div!")
+            document.getElementById("demo").innerHTML = Date();
+        }
+
+    </script>
+</body>
+</html>
